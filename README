@@ -1,0 +1,40 @@
+domEng 是一个高效简洁的html 模版渲染引擎，核心代码只有30行，并且支持全功能javascript 语法。适用不希望引入庞大的渲染类库。
+[% statement %] 为javascript 语句， ［%= statment %］为赋值语句。 其中statment 任何合法的javascript语句
+
+用法
+模版定义如下
+
+<w-tpl id="tpl">
+
+<div>	
+    <h2>[%=this.title%]</h2>
+    [% for(var key in this.data){ %]
+	<div>[%=this.data[key]%]</div>
+    [% } %]
+</div>
+
+</w-tpl>
+
+
+<script>
+//直接调用domEng 方法进行渲染
+	var dom=domEng(document.getElementById('tpl'),{title:'Hello World!',data:{
+		"one":"I'm one",
+		"two":"I'm two"	
+		
+	}})
+/*
+
+返回渲染的dom (注意此处返回的不是字符串而是真实的可操作的dom)
+
+结构如下
+<div>
+	<h2>Hello World</h2>
+	<div>I'm one</dov>
+	<div>I'm Two</dov>	
+</div>
+	
+*/
+
+</script>
+
